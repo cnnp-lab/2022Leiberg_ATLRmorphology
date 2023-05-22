@@ -8,7 +8,7 @@ clear all
 % folder with patient data that has been age and sex corrected (using gam),
 % hemisphere of right onset patients have been flipped, 
 % left and right hemispheres of all patients have been collated
-inputFolder = 'Data/age_sex_corrected/';
+inputFolder = 'age_sex_corrected/';
 
 % save outputs and figs
 outputFolder = 'figures/';
