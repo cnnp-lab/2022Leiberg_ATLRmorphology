@@ -35,7 +35,6 @@ output = struct;
 % Spherical radius around point (mm)
 r = 30;
 
-[~, SID] = fileparts(subject);
 
 load('LUT_lobes.mat') % https://github.com/cnnp-lab/CorticalFoldingAnalysisTools/tree/master/Lobes/LUT_lobes.mat
 LUT_lobes_TL = LUT_lobes(LUT_lobes(:,2)==3,1);
@@ -44,7 +43,7 @@ for hemisphere = 1:length(side)
 
     % Path to subject's files
     pathpre = [subject '/surf/' side(hemisphere)];
-    outpath = [saveto '/' SID '/surf/' side(hemisphere)];
+    outpath = [saveto '/surf/' side(hemisphere)];
 
     [thickness, ~]  = read_curv([pathpre, 'h.thickness']);
     [pialv,pialf]   = freesurfer_read_surf([pathpre, 'h.pial']);
@@ -440,12 +439,12 @@ end
 
 % Write to file
 if excludeLhTL && excludeRhTL
-    save([saveto '/' SID '/surf/voxel_features_excludedBothTL.mat'], 'output')
+    save([saveto '/surf/voxel_features_excludedBothTL.mat'], 'output')
 elseif excludeLhTL
-    save([saveto '/' SID '/surf/voxel_features_excludedLhTL.mat'], 'output')
+    save([saveto '/surf/voxel_features_excludedLhTL.mat'], 'output')
 elseif excludeRhTL
-    save([saveto '/' SID '/surf/voxel_features_excludedRhTL.mat'], 'output')
+    save([saveto '/surf/voxel_features_excludedRhTL.mat'], 'output')
 else
-    save([saveto '/' SID '/surf/voxel_features.mat'], 'output')
+    save([saveto '/surf/voxel_features.mat'], 'output')
 end
 end
