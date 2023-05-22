@@ -26,7 +26,7 @@ addpath(libdir)
 addpath([libdir '/FSmatlab/'])
 addpath(iso2meshdir)
 
-if nargidn < 7
+if nargin < 7
     side = 'rl';
 end
 
