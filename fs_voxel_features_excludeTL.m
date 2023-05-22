@@ -7,7 +7,8 @@ function [output] = fs_voxel_features_excludeTL(subject, libdir, iso2meshdir, ex
 %   Licence: CC-BY
 % - excludeRhTL: Whether to exclude right hemisphere temporal lobe, 0 or 1
 % - excludeLhTL: Whether to exclude left hemisphere temporal lobe, 0 or 1
-% - saveto: folder for output
+% - saveto: char, folder for output, e.g.
+% <path_to_fs_folder>/voxel_features
 % - side: 'l' or 'r', default is both
 %
 % Output: table for each hemisphere, contains values at each point on the
@@ -43,7 +44,7 @@ for hemisphere = 1:length(side)
 
     % Path to subject's files
     pathpre = [subject '/surf/' side(hemisphere)];
-    outpath = [saveto '/surf/' side(hemisphere)];
+    outpath = [saveto '/' side(hemisphere)];
 
     [thickness, ~]  = read_curv([pathpre, 'h.thickness']);
     [pialv,pialf]   = freesurfer_read_surf([pathpre, 'h.pial']);
@@ -439,12 +440,12 @@ end
 
 % Write to file
 if excludeLhTL && excludeRhTL
-    save([saveto '/surf/voxel_features_excludedBothTL.mat'], 'output')
+    save([saveto '/voxel_features_excludedBothTL.mat'], 'output')
 elseif excludeLhTL
-    save([saveto '/surf/voxel_features_excludedLhTL.mat'], 'output')
+    save([saveto '/voxel_features_excludedLhTL.mat'], 'output')
 elseif excludeRhTL
-    save([saveto '/surf/voxel_features_excludedRhTL.mat'], 'output')
+    save([saveto '/voxel_features_excludedRhTL.mat'], 'output')
 else
-    save([saveto '/surf/voxel_features.mat'], 'output')
+    save([saveto '/voxel_features.mat'], 'output')
 end
 end
